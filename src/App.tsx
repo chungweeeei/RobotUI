@@ -1,11 +1,13 @@
 import './App.css'
 
-import InputFileUpload  from './components/uploadFile';
+//import InputFileUpload  from './components/uploadFile';
+import VersionPage from './Version/VersionPage';
+
 
 function App() {
   return (
     <>
-      <InputFileUpload />
+      <VersionPage />
     </>
   )
 }

@@ -83,26 +83,21 @@ function InputFileUpload() {
   });
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      {uploading ? (
-        <UploadingIndicator context={context} progress={progress} />
-      ) : (
-        <Button
-          component="label"
-          role={undefined}
-          variant="contained"
-          tabIndex={-1}
-          startIcon={<CloudUploadIcon />}
-        >
-          Upload File
-          <VisuallyHiddenInput
-            type="file"
-            multiple
-            onChange={handleChange}
-          />
-        </Button>
-      )}
-    </Box>
+    uploading ? <UploadingIndicator context={context} progress={progress}/> :
+    <Button
+      component="label"
+      role={undefined}
+      variant="contained"
+      tabIndex={-1}
+      startIcon={<CloudUploadIcon />}
+    >
+      Upload File
+      <VisuallyHiddenInput
+        type="file"
+        multiple
+        onChange={handleChange}
+      />
+    </Button>
   );
 }
 

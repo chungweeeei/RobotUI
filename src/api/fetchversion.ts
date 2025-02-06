@@ -3,7 +3,7 @@ import xmlHttpRequest from 'xmlhttprequest';
 
 const versionBaseURL = "http://172.27.0.4:3000/v1/versions";
 
-type VersionInfo = {
+export type VersionInfo = {
     version: string,
     upgrade_from: string,
     state: string,
@@ -13,17 +13,19 @@ type VersionInfo = {
     builded_at: string
 }
 
-type Versions = {
-    current_version: string
+export type Versions = {
+    total: number,
+    page: number,
+    size: number,
     versions: Array<VersionInfo>
 }
 
-export function fetchVersions () {
+export function fetchVersions (page: number = 0, size: number = 5) {
 
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
-        xhr.open('GET', versionBaseURL, true);
+        xhr.open('GET', `${versionBaseURL}?page=${page+1}&size=${size}`, true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.onload = () => {
