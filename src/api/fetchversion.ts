@@ -1,4 +1,3 @@
-import { version } from 'react';
 import xmlHttpRequest from 'xmlhttprequest';
 
 const versionBaseURL = "http://172.27.0.4:3000/v1/versions";

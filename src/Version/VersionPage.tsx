@@ -3,15 +3,26 @@ import { TablePagination } from "@mui/material";
 
 import InputFileUpload from "../components/uploadFile";
 import VersionsTable from "../components/versionTable";
-import { fetchVersions } from "../api/fetchversion";
+import InstallationDialog from "../components/installationDialog";
+import { fetchVersions } from "../api/fetchVersion";
 
 function VersionPage() {
     
+    // version table pagination
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [versions, setVersions] = useState()
+
+    // filter text
     const [filterText, setFilterText] = useState("");
     const inputRef = useRef(null);
+
+    // upload file version
+    // const [uploadVesion, setUploadVersion] = useState(null);
+
+    // {TODO} useEffect might face race conndition issue
+    // cause it handle async status
+    // when request sending so frequently it might cause return result order wrong
 
     useEffect(() => {
         fetchVersions(page, rowsPerPage)
@@ -48,13 +59,14 @@ function VersionPage() {
                 <div className="flex space-x-3 items-center justify-end">
                     {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">Upload File</button> */}
                     <InputFileUpload />
-                    <button className="bg-white text-gray-300 px-4 py-2 rounded"
+                    <InstallationDialog />
+                    <button className="bg-white text-black px-4 py-2 rounded"
                             onClick={handleOnClick}>
                         Clear Filters
                     </button>
                 </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center border-b-2">
                 <div className="flex space-x-4">
                     <p>Filter:</p>
                     <input
